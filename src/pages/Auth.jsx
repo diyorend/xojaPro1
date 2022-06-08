@@ -32,6 +32,13 @@ const Auth = () => {
     });
   }
 
+  function login() {
+    axios.post("http://localhost:8080/api/user/login", auth).then((res) => {
+      if (res.data.success === true) {
+        localStorage.setItem("token", res.data.token);
+      }
+    });
+  }
   // function login() {
   //   axios.post("http://localhost:9000/api/v1/auth/login", auth).then((res) => {
   //     // if (res.data.statusCode === 200) {
