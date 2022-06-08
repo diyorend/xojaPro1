@@ -95,6 +95,7 @@ const AuthStyled = styled.div`
     padding: 0.8rem 2rem;
     color: white;
     font-size: 1.1rem;
+    cursor: pointer;
   }
 `;
 
