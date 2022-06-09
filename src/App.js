@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route exact={true} path={"/"} element={<Auth />} />
         <Route exact={true} path={"/admin"} element={<Main />} />
+        <Route exact={true} path={"/course"} element={<Course />} />
       </Routes>
     </BrowserRouter>
   );
