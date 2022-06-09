@@ -1,9 +1,15 @@
 import Auth from "./pages/Auth";
+import Course from "./pages/Course";
+import Main from "./pages/Main";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <Auth />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route exact={true} path={"/"} element={<Auth />} />
+        <Route exact={true} path={"/admin"} element={<Main />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

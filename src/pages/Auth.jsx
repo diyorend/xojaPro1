@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from "react";
-import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -22,7 +22,7 @@ const Auth = () => {
   });
   const [success, setSuccess] = useState(false);
 
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   function handleInputChange(e) {
     dispatch({
@@ -33,22 +33,15 @@ const Auth = () => {
   }
 
   function login() {
-    axios.post("http://localhost:8080/api/user/login", auth).then((res) => {
-      if (res.data.success === true) {
-        localStorage.setItem("token", res.data.token);
+    axios.post("http://localhost:8080/api/v1/auth/login", auth).then((res) => {
+      if (res.data.statusCode === 200) {
+        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.refreshToken);
+        return navigate("/admin");
       }
     });
   }
-  // function login() {
-  //   axios.post("http://localhost:9000/api/v1/auth/login", auth).then((res) => {
-  //     // if (res.data.statusCode === 200) {
-  //     if (res.data.statusCode === 200) {
-  //       localStorage.setItem("accessToken", res.data.accessToken);
-  //       localStorage.setItem("refreshToken", res.data.refreshToken);
-  //       return navigate("/admin");
-  //     }
-  //   });
-  // }
+
   return (
     <AuthStyled>
       <div>
@@ -66,7 +59,7 @@ const Auth = () => {
           name="password"
           id="password"
         />
-        <button>Login</button>
+        <button onClick={login}>Login</button>
       </div>
     </AuthStyled>
   );
